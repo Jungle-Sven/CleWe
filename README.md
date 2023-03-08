@@ -1,9 +1,10 @@
 # CleWe
+
 database:
 
 docker-compose up -d
 
-database update: now we use SQLite, no server is needed. 
+database update: now we use SQLite, no server is needed.
 
 docker container app:
 
