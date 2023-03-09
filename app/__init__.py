@@ -13,4 +13,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # import the routes module
-from app import routes
+#from app import routes
+
+@app.route('/')
+def index():
+    return "Hello World!"

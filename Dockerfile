@@ -16,15 +16,15 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Make port 80 available to the world outside this container
-EXPOSE 80
-
-# Define environment variable
-ENV FLASK_APP=app/__init__.py
+EXPOSE 80 5000
 
 # Copy application files
 COPY database.py .
 COPY app app
 COPY . .
+
+# Define environment variable
+ENV FLASK_APP=app/__init__.py
 
 # Set environment variables for database connection
 ENV DB_HOST db
@@ -34,3 +34,4 @@ ENV DB_PASS mypassword
 
 # Run app.py when the container launches
 CMD ["flask", "run", "--host=0.0.0.0", "--port=80"]
+
