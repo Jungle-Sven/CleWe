@@ -1,13 +1,18 @@
 from flask import Flask, request, jsonify
-from app.models import db, db_uri, User, Quest, Action
+from app.models import User, Quest, Action
 from datetime import datetime
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db.init_app(app)
+from app import db
 
-@app.route('/users', methods=['POST'])
+#app = Flask(__name__)
+#app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
+#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+#db.init_app(app)
+
+def index():
+    return "hhello world"
+
+#@app.route('/users', methods=['POST'])
 def create_user():
     data = request.json
     new_user = User(
@@ -24,7 +29,7 @@ def create_user():
     db.session.commit()
     return jsonify({'message': 'User created successfully'}), 201
 
-@app.route('/users/<int:user_id>', methods=['GET'])
+#@app.route('/users/<int:user_id>', methods=['GET'])
 def get_user(user_id):
     user = User.query.get(user_id)
     if not user:
@@ -40,7 +45,7 @@ def get_user(user_id):
         'skill_dex_xp': user.skill_dex_xp,
         'skill_nft_xp': user.skill_nft_xp
     })
-
+'''
 @app.route('/quests', methods=['POST'])
 def create_quest():
     data = request.json
@@ -94,3 +99,4 @@ def get_user_actions(user_id):
 
 if __name__ == '__main__':
     app.run(debug=True)
+'''

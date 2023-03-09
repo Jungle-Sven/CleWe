@@ -1,14 +1,13 @@
-from flask_sqlalchemy import SQLAlchemy
 import os
 from datetime import datetime
 
-db_host = os.environ['DB_HOST']
-db_name = os.environ['DB_NAME']
-db_user = os.environ['DB_USER']
-db_pass = os.environ['DB_PASS']
+#db_host = os.environ['DB_HOST']
+#db_name = os.environ['DB_NAME']
+#db_user = os.environ['DB_USER']
+#db_pass = os.environ['DB_PASS']
+#db_uri = f"postgresql://{db_user}:{db_pass}@{db_host}/{db_name}"
 
-db_uri = f"postgresql://{db_user}:{db_pass}@{db_host}/{db_name}"
-db = SQLAlchemy()
+from app import db
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
