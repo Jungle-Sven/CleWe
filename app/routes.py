@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from app.models import User, Quest, Action
+from app.models import User, Quest, ActionLog
 from datetime import datetime
 
 from app import db
@@ -9,23 +9,26 @@ from app import db
 #app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #db.init_app(app)
 
+
+
 def index():
     return "hhello world"
 
 #@app.route('/users', methods=['POST'])
 def create_user():
-    data = request.json
-    new_user = User(
-        wallet_address=data['wallet_address'],
-        experience=data.get('experience', 0),
-        level=data.get('level', 1),
-        nickname=data['nickname'],
-        avatar_url=data['avatar_url'],
-        skill_general_xp=data.get('skill_general_xp', 0),
-        skill_dex_xp=data.get('skill_dex_xp', 0),
-        skill_nft_xp=data.get('skill_nft_xp', 0)
+    #add some data to db
+    user1 = User(
+        wallet_address='0xab5801a7d398351b8be11c439e05c5b3259aec9b',
+        experience=432,
+        level=7,
+        nickname='vitalik',
+        avatar_url='avatar_url_228',
+        skill_general_xp=33,
+        skill_dex_xp=65,
+        skill_nft_xp=11
     )
-    db.session.add(new_user)
+    
+    db.session.add(user1)
     db.session.commit()
     return jsonify({'message': 'User created successfully'}), 201
 
@@ -45,20 +48,32 @@ def get_user(user_id):
         'skill_dex_xp': user.skill_dex_xp,
         'skill_nft_xp': user.skill_nft_xp
     })
-'''
-@app.route('/quests', methods=['POST'])
+
+#@app.route('/quests', methods=['POST'])
 def create_quest():
-    data = request.json
     new_quest = Quest(
-        name=data['name'],
-        topic=data['topic'],
-        text=data['text']
+        name='A DEX maxi thread',
+        topic='DEX',        
+        description='This will motivate you to start using decentralized exchanges',
+        text="""Are you tired of the restrictions and limitations of centralized exchanges? Are you looking for a more secure, transparent, and decentralized way to trade cryptocurrencies? Look no further than decentralized exchanges, or DEXs, the future of crypto trading!
+
+With a DEX, you can trade cryptocurrencies peer-to-peer, without the need for intermediaries or central authorities. This means that you have complete control over your assets, and you can be sure that your trades are executed fairly and transparently.
+
+But that's not all! DEXs also offer a wide range of advantages over centralized exchanges. For starters, they are more secure, since they do not store your private keys or personal information on their servers. This makes them less vulnerable to hacks and data breaches, which are unfortunately common in the world of centralized exchanges.
+
+Moreover, DEXs offer a higher degree of privacy and anonymity, since you don't have to provide personal information or go through lengthy KYC procedures to start trading. This means that you can maintain your privacy while still enjoying the benefits of trading cryptocurrencies.
+
+And let's not forget about the gamification aspect of our education platform - with DEXs, you can participate in various challenges and competitions to showcase your trading skills and knowledge of the crypto market. So what are you waiting for? Join the decentralized revolution today and start trading on DEXs like Uniswap, Sushiswap, or Pancakeswap!""",
+        image_url='pic123',
+        experience_reward = 7,
+        skill_reward = 5
+
     )
     db.session.add(new_quest)
     db.session.commit()
     return jsonify({'message': 'Quest created successfully'}), 201
 
-@app.route('/quests/<int:quest_id>', methods=['GET'])
+#@app.route('/quests/<int:quest_id>', methods=['GET'])
 def get_quest(quest_id):
     quest = Quest.query.get(quest_id)
     if not quest:
@@ -67,9 +82,13 @@ def get_quest(quest_id):
         'id': quest.id,
         'name': quest.name,
         'topic': quest.topic,
-        'text': quest.text
+        'description': quest.description,
+        'text': quest.text,
+        'image_url': quest.image_url,
+        'experience_reward': quest.experience_reward,
+        'skill_reward': quest.skill_reward
     })
-
+'''
 @app.route('/actions', methods=['POST'])
 def create_action():
     data = request.json

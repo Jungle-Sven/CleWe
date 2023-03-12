@@ -24,12 +24,29 @@ class Quest(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(256), nullable=False)
     topic = db.Column(db.String(256), nullable=False)
+    description = db.Column(db.String(256), nullable=False)
     text = db.Column(db.Text, nullable=False)
+    image_url = db.Column(db.String(256), nullable=False)
+    experience_reward = db.Column(db.Integer, nullable=False, default=0)
+    skill_reward = db.Column(db.Integer, nullable=False, default=0) 
 
-class Action(db.Model):
+'''
+we need some data about users like logins, content interaction, etc
+
+it is a form of:
+web analytics / user tracking / event sourcing / logging
+
+possible user's actions are:
+-login
+-page_view
+-quest completion
+-a series of logins
+-a series of completed quests
+'''
+class ActionLog(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_wallet = db.Column(db.String(64), nullable=False)
-    timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    user_id = db.Column(db.String(64), nullable=False)
+    timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
     action = db.Column(db.String(64), nullable=False)
     xp_reward = db.Column(db.Integer, nullable=False, default=0)
 
