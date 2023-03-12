@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from app.models import User, Quest, ActionLog
+from app.user_profile import UserLevel
 from datetime import datetime
 
 from app import db
@@ -46,7 +47,8 @@ def get_user(user_id):
         'avatar_url': user.avatar_url,
         'skill_general_xp': user.skill_general_xp,
         'skill_dex_xp': user.skill_dex_xp,
-        'skill_nft_xp': user.skill_nft_xp
+        'skill_nft_xp': user.skill_nft_xp,
+        'xp_to_next_level': UserLevel().exp_to_next_level(user.experience)
     })
 
 #@app.route('/quests', methods=['POST'])
