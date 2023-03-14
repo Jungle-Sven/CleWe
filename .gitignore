@@ -3,36 +3,36 @@
 myenv/
 
 # dependencies
-/node_modules
-/.pnp
+/ui/node_modules
+/ui/.pnp
 .pnp.js
 
 # testing
 /coverage
 
 # next.js
-/.next/
-/out/
+/ui/.next/
+/ui/out/
 
 # production
-/build
+/ui/build
 
 # misc
 .DS_Store
 *.pem
 
 # debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
+/ui/npm-debug.log*
+/ui/yarn-debug.log*
+/ui/yarn-error.log*
+/ui/.pnpm-debug.log*
 
 # local env files
-.env*.local
+/ui/.env*.local
 
 # vercel
-.vercel
+/ui.vercel
 
 # typescript
-*.tsbuildinfo
-next-env.d.ts
+/ui/*.tsbuildinfo
+/ui/next-env.d.ts
