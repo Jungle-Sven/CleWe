@@ -1,0 +1,102 @@
+.titleBanner {
+  min-height: 160px;
+  padding: 52px 60px 0 200px;
+  border-radius: 12px;
+  background: url(./img/banner-bg.png) no-repeat 50%;
+  position: relative;
+}
+
+.titleBannerTitle {
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+.titleBannerDescription {
+  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.questsHeader {
+  margin-top: 60px;
+}
+
+.questsHeaderTitle {
+  margin-top: 8px;
+  font-size: 1.625rem;
+  font-weight: 700;
+}
+
+.featuredQuests {
+  margin-top: 32px;
+}
+
+.questItem {
+  position: relative;
+}
+
+.questItemCover {
+  width: 100%;
+  height: 120px;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
+}
+
+.cover1 {
+  background: url(./img/cover-01.png) center center / cover no-repeat;
+}
+
+.cover2 {
+  background: url(./img/cover-02.png) center center / cover no-repeat;
+}
+
+.cover3 {
+  background: url(./img/cover-03.png) center center / cover no-repeat;
+}
+
+.cover4 {
+  background: url(./img/cover-04.png) center center / cover no-repeat;
+}
+
+.questItemInfo {
+  padding: 44px 28px 0;
+  position: relative;
+}
+
+.questItemBadge {
+  border: 6px solid #1d2333;
+  border-radius: 50%;
+  position: absolute;
+  top: -28px;
+  left: 22px;
+}
+
+.questItemTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.questItemDescription {
+  margin-top: 18px;
+  color: #9aa4bf;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4285714286em;
+}
+
+.questActions {
+  display: flex;
+  align-items: center;
+  margin-top: 22px;
+  padding: 14px 0;
+  border-top: 1px solid #2f3749;
+}
+
+.questLink {
+  width: 100%;
+}
+
+.questLink:hover {
+  background-color: #fff;
+  color: #3e3f5e;
+}

@@ -1,0 +1,85 @@
+.header {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+  justify-content: flex-start;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  background-color: #7750f8;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+}
+
+.headerActions {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.headerBrandText {
+  margin-left: 26px;
+  color: #fff;
+  font-family: Titillium Web, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.navigation {
+  height: 80px;
+}
+
+.mainMenu {
+  display: flex;
+}
+
+.mainMenuLink {
+  padding: 0 24px;
+  display: block;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 80px;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.content {
+  margin: 0 auto;
+  max-width: 1184px;
+  padding: 112px 0 100px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-gap: 16px;
+  align-items: start;
+  margin-top: 32px;
+}
+
+.grid39 {
+  grid-template-areas: "sidebar content";
+  grid-template-columns: 24% 76%;
+  margin-top: 0;
+}
+
+.grid333 {
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 0;
+}
+
+.grid3333 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.contentWidget {
+  border-radius: 12px;
+  background-color: #1d2333;
+  box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.06);
+}

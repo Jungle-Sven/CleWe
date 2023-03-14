@@ -1,0 +1,14 @@
+.visualFull {
+  background-color: #293249;
+  border-radius: 2px;
+  height: 6px;
+  width: 100%;
+}
+
+.visualProgressPart {
+  transition: width 300ms ease-in-out;
+  background-image: linear-gradient(to right, #40d04f, #d9ff65);
+  border-radius: 2px;
+  height: 100%;
+  max-width: 100%;
+}
