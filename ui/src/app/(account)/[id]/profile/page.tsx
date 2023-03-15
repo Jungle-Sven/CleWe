@@ -10,7 +10,13 @@ export default function Profile() {
   return (
     <div className={layout.content}>
       <div className={layout.grid}>
-        <div className={classNames(layout.grid, styles.achievements)}>
+        <div
+          className={classNames(
+            layout.grid,
+            styles.achievements,
+            styles.grid22
+          )}
+        >
           <div className={styles.achievementBox}>
             <div className={styles.achievementBoxInfoWrap}>
               <Image
@@ -58,7 +64,13 @@ export default function Profile() {
             </div>
           </div>
 
-          <div className={classNames(layout.grid, styles.profileStats)}>
+          <div
+            className={classNames(
+              layout.grid,
+              styles.profileStats,
+              styles.noMargin
+            )}
+          >
             <div
               className={classNames(
                 layout.contentWidget,
