@@ -1,37 +1,21 @@
-FROM python:3.9-slim-buster
+FROM python:3.9-slim
 
-# Install dependencies
-RUN apt-get update && \
-    apt-get install -y gcc && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+ENV PROJECT_ROOT=/home/ubuntu/clewe
+WORKDIR $PROJECT_ROOT
 
-# Set working directory
-WORKDIR /app
+RUN apt-get update
+COPY requirements.txt /tmp/requirements.txt
 
-# Copy requirements file
-COPY requirements.txt .
+ENV PYTHONPATH=/app
+ENV PYTHONBUFFERED 1
 
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r /tmp/requirements.txt
 
-# Make port 80 available to the world outside this container
-EXPOSE 80 5000
+COPY ./app $PROJECT_ROOT/app
+COPY alembic $PROJECT_ROOT/alembic
+COPY .env $PROJECT_ROOT/.env
 
-# Copy application files
-COPY database.py .
-COPY app app
-COPY . .
+EXPOSE 8000
 
-# Define environment variable
-ENV FLASK_APP=app/__init__.py
-
-# Set environment variables for database connection
-ENV DB_HOST db
-ENV DB_NAME mydatabase
-ENV DB_USER myuser
-ENV DB_PASS mypassword
-
-# Run app.py when the container launches
-CMD ["flask", "run", "--host=0.0.0.0", "--port=80"]
-
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]

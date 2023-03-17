@@ -1,19 +1,24 @@
 # CleWe
 
-## API setup
+## Technology stack
 
-### database
+* FastAPI
+* Postgres 10+
 
-now we use SQLite, no server is needed.
+### start project
 
-### API application
+Pre-requirements: docker and docker-compose should be installed
 
-```yml
-docker build -t my_app .
-docker run --rm --network clewe_my_network -p 8080:80 my_app
-```
+`make build`
 
-An application should run on `http://127.0.0.1:8080/`
+
+### Useful project links
+
+* swagger - http://localhost/api/swagger/
+* redoc - http://localhost/api/redoc/
+
+
+An application should run on `http://127.0.0.1:8000/`
 
 ## UI setup
 
