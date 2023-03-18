@@ -15,7 +15,6 @@ fake = Faker()
 
 IMAGE_NAMES = ['completedq-l.png', 'gempost-b.png']
 QUEST_NAMES = ['Crypto Wallet', 'Dex', 'DAO']
-IMAGE_NAMES = ['completedq-l.png', 'gempost-b.png']
 
 class Msg(BaseModel):
     msg: str
@@ -65,8 +64,7 @@ def fill_db(db: Session = Depends(deps.get_db)):
         trophies = [
             models.Trophy(
                 user_id=users[i].id,
-                tx_hash=f'fake hash: {i}',
-                img_url=IMAGE_NAMES[random.randint(0, 100)],
+                img_url=IMAGE_NAMES[random.randint(0, 1)],
                 description=fake.word(),
             ) for i in range(len(users))
         ]
