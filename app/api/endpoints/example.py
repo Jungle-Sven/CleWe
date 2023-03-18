@@ -13,7 +13,6 @@ router = APIRouter()
 
 fake = Faker()
 
-IMAGE_NAMES = ['completedq-l.png', 'gempost-b.png']
 QUEST_NAMES = ['Crypto Wallet', 'Dex', 'DAO']
 
 class Msg(BaseModel):
@@ -61,14 +60,6 @@ def fill_db(db: Session = Depends(deps.get_db)):
         for i in range(len(users)):
             users[i].completed_quests.append(quests[i])
 
-        trophies = [
-            models.Trophy(
-                user_id=users[i].id,
-                img_url=IMAGE_NAMES[random.randint(0, 1)],
-                description=fake.word(),
-            ) for i in range(len(users))
-        ]
-
         skills = [
             models.Skill(
                 user_id=users[i].id,
@@ -79,7 +70,6 @@ def fill_db(db: Session = Depends(deps.get_db)):
             ) for i in range(len(users))
         ]
 
-        db.bulk_save_objects(objects=trophies)
         db.bulk_save_objects(objects=skills)
         db.commit()
         print(f"All tables are filled")
