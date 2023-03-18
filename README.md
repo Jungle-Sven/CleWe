@@ -9,12 +9,14 @@
 
 Pre-requirements: docker and docker-compose should be installed
 
-`make build`
+`make build` - build and run project
+
+`make migrate` - run migrations
 
 
 ### Useful project links
 
-* swagger - http://localhost/api/swagger/
+* swagger - http://localhost/api/docs/
 * redoc - http://localhost/api/redoc/
 
 
