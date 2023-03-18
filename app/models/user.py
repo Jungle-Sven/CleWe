@@ -4,13 +4,12 @@ from sqlalchemy import Column, Integer, VARCHAR
 from sqlalchemy.orm import relationship, Mapped
 
 from app.db.base_class import Base
-from app.models.association_tables import users_quests
 
 if TYPE_CHECKING:
-    from app.models import Quest, Skill, Trophy
+    from app.models import Quest, Skill, Trophy, UsersQuests
 
 
-class User(Base):
+class UserTable(Base):
     id: int = Column(Integer, primary_key=True, index=True)
     nickname: int = Column(VARCHAR(255))
     wallet_address: str = Column(VARCHAR(255))
@@ -18,9 +17,11 @@ class User(Base):
     level_total_exp: int = Column(Integer)
     exp_to_next_level: int = Column(Integer)
     completed_quests: Mapped[list['Quest']] = relationship(
-        secondary=users_quests, back_populates='users'
+        secondary="usersquests", back_populates='users'
     )
-
+    users_quests: Mapped[list['UsersQuests']] = relationship(
+        back_populates='user'
+    )
     skills: Mapped[list['Skill']] = relationship(
         'Skill', back_populates='user', lazy='select'
     )

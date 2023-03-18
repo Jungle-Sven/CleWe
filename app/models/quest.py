@@ -4,10 +4,9 @@ from sqlalchemy import Column, Integer, ForeignKey, VARCHAR, Text, Float
 from sqlalchemy.orm import relationship, Mapped
 
 from app.db.base_class import Base
-from app.models.association_tables import users_quests
 
 if TYPE_CHECKING:
-    from app.models import User
+    from app.models import UserTable, UsersQuests
 
 
 class Quest(Base):
@@ -19,6 +18,9 @@ class Quest(Base):
     description: str = Column(Text)
     difficulty: int = Column(Integer)
     exp_reward: int = Column(Integer)
-    users: Mapped[list['User']] = relationship(
-        secondary=users_quests, back_populates='completed_quests'
+    users: Mapped[list['UserTable']] = relationship(
+        secondary="usersquests", back_populates='completed_quests'
+    )
+    users_quests: Mapped[list['UsersQuests']] = relationship(
+        back_populates='quest'
     )

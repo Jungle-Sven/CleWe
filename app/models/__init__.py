@@ -1,8 +1,8 @@
-from .user import User
+from .user import UserTable
 from .quest import Quest
 from .skill import Skill
 from .trophy import Trophy
-from .association_tables import users_quests
+from .association_tables import UsersQuests
 
 import inspect as _inspect
 
