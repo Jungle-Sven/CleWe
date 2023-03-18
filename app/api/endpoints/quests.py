@@ -1,17 +1,21 @@
+import random
+
 from fastapi import APIRouter, Depends, status as http_status
 from sqlalchemy.orm import Session
 
 from app.api import deps
 from app.api.exceptions import NotFound, QuestAlreadyCompleted
-from app.models import Quest, UserTable
+from app.models import Quest, UserTable, Trophy
 from app.schemas import quests
 
 
 router = APIRouter()
 
+IMAGE_NAMES = ['completedq-l.png', 'gempost-b.png']
+
 
 @router.get('/', response_model=list[quests.Quest], status_code=http_status.HTTP_200_OK)
-def get_all_users(db: Session = Depends(deps.get_db)):
+def get_all_quests(db: Session = Depends(deps.get_db)):
     return db.query(Quest).all()
 
 
@@ -34,6 +38,12 @@ def complete_quest(slug: str, id: int, db: Session = Depends(deps.get_db)):
         raise QuestAlreadyCompleted()
 
     user.completed_quests.append(quest)
+    trophy = Trophy(
+        user_id=user.id,
+        img_url=IMAGE_NAMES[random.randint(0, 1)],
+        description='I love blockchain'
+    )
     db.add(user)
+    db.add(trophy)
     db.commit()
     return quests.CompletedResponse(trophy_achieved=True)

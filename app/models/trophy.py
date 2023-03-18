@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from sqlalchemy import Column, Integer, ForeignKey, VARCHAR, Text
 from sqlalchemy.orm import Mapped, relationship
@@ -13,8 +13,8 @@ if TYPE_CHECKING:
 class Trophy(Base):
     id: int = Column(Integer, primary_key=True, index=True)
     user_id: int = Column(Integer, ForeignKey('usertable.id', ondelete='CASCADE'), index=True)
-    tx_hash: str = Column(VARCHAR(255), unique=True)
     img_url: str = Column(VARCHAR(255))
+    tx_hash: Optional[str] = Column(VARCHAR(255), unique=True)
     description: str = Column(Text)
 
     user: Mapped["UserTable"] = relationship(
