@@ -24,13 +24,13 @@ def get_all_quests(db: Session = Depends(deps.get_db)):
     response_model=quests.CompletedResponse,
     status_code=http_status.HTTP_200_OK
 )
-def complete_quest(slug: str, id: int, db: Session = Depends(deps.get_db)):
+def complete_quest(slug: str, request_body: quests.QuestRequest, db: Session = Depends(deps.get_db)):
     quest = (
         db.query(Quest)
         .filter(Quest.slug == slug)
         .first()
     )
-    user = db.query(UserTable).filter(UserTable.id == id).first()
+    user = db.query(UserTable).filter(UserTable.id == request_body.user_id).first()
     if not (quest and user):
         raise NotFound()
 

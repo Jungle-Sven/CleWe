@@ -11,5 +11,9 @@ class Quest(DBBaseModel):
     exp_reward: int
 
 
+class QuestRequest(DBBaseModel):
+    user_id: int
+
+
 class CompletedResponse(BaseModel):
     trophy_achieved: bool = False
