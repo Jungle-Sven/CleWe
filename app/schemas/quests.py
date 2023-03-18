@@ -6,6 +6,7 @@ class Quest(DBBaseModel):
     name: str
     topic: str
     skill_reward: float
+    slug: str
     description: str
     difficulty: int
     exp_reward: int
