@@ -20,7 +20,7 @@ def get_all_quests(db: Session = Depends(deps.get_db)):
 
 
 @router.patch(
-    '/{slug}/complete',
+    '/{slug}/complete/',
     response_model=quests.CompletedResponse,
     status_code=http_status.HTTP_200_OK
 )
