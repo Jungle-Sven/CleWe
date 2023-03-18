@@ -1,4 +1,4 @@
-from app.schemas.base import DBBaseModel
+from app.schemas.base import DBBaseModel, BaseModel
 
 
 class Quest(DBBaseModel):
@@ -9,3 +9,7 @@ class Quest(DBBaseModel):
     description: str
     difficulty: int
     exp_reward: int
+
+
+class CompletedResponse(BaseModel):
+    trophy_achieved: bool = False
