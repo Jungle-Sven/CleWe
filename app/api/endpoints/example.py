@@ -36,9 +36,9 @@ def fill_db(db: Session = Depends(deps.get_db)):
             models.UserTable(
                 nickname=fake.name(),
                 wallet_address=fake.word(),
-                level=random.randint(1, 5),
-                level_total_exp=random.randint(1, 5),
-                exp_to_next_level=random.randint(1, 5),
+                level=random.randint(0, 100),
+                level_total_exp=random.randint(0, 100),
+                exp_to_next_level=random.randint(0, 100),
             ) for _ in range(3)
         ]
         quests = [
@@ -46,10 +46,10 @@ def fill_db(db: Session = Depends(deps.get_db)):
                 name=fake.word(),
                 slug=f'slug: {i}',
                 topic=QUEST_NAMES[i],
-                skill_reward=random.randint(1, 5),
+                skill_reward=random.randint(0, 100),
                 description=fake.word(),
-                difficulty=random.randint(1, 5),
-                exp_reward=random.randint(1, 5),
+                difficulty=random.randint(0, 100),
+                exp_reward=random.randint(0, 100),
             ) for i in range(len(users))
         ]
 
@@ -66,7 +66,7 @@ def fill_db(db: Session = Depends(deps.get_db)):
             models.Trophy(
                 user_id=users[i].id,
                 tx_hash=f'fake hash: {i}',
-                img_url=IMAGE_NAMES[random.randint(0, 1)],
+                img_url=IMAGE_NAMES[random.randint(0, 100)],
                 description=fake.word(),
             ) for i in range(len(users))
         ]
@@ -76,8 +76,8 @@ def fill_db(db: Session = Depends(deps.get_db)):
                 user_id=users[i].id,
                 topic=QUEST_NAMES[i].lower(),
                 title=fake.word(),
-                level=random.randint(1, 5),
-                experience=random.randint(1, 100),
+                level=random.randint(0, 100),
+                experience=random.randint(0, 100),
             ) for i in range(len(users))
         ]
 
