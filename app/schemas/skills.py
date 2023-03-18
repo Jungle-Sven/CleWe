@@ -6,4 +6,4 @@ class Skill(DBBaseModel):
     topic: str
     title: str
     level: int
-    experience: int
+    experience: float

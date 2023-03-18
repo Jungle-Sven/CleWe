@@ -45,7 +45,7 @@ def fill_db(db: Session = Depends(deps.get_db)):
                 name=fake.word(),
                 slug=f'slug: {i}',
                 topic=QUEST_NAMES[i],
-                skill_reward=random.randint(0, 100),
+                skill_reward=round(random.uniform(0, 10), 1),
                 description=fake.word(),
                 difficulty=random.randint(1, 5),
                 exp_reward=random.randint(0, 100),
@@ -75,7 +75,7 @@ def fill_db(db: Session = Depends(deps.get_db)):
                 topic=QUEST_NAMES[i].lower(),
                 title=fake.word(),
                 level=random.randint(0, 100),
-                experience=random.randint(0, 100),
+                experience=round(random.uniform(0, 10), 1),
             ) for i in range(len(users))
         ]
 

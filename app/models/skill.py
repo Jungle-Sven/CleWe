@@ -15,7 +15,7 @@ class Skill(Base):
     topic: str = Column(VARCHAR(255))
     title: str = Column(VARCHAR(255))
     level: int = Column(Integer, default=0)
-    experience: int = Column(DECIMAL)
+    experience: float = Column(DECIMAL)
 
     user: Mapped["UserTable"] = relationship(
         'UserTable',
