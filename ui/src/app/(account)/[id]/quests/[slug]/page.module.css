@@ -1,0 +1,10 @@
+.toolbox {
+  display: flex;
+  justify-content: flex-end;
+  margin: 36px auto 0;
+  max-width: 1184px;
+}
+
+.completeButton {
+  width: 140px;
+}

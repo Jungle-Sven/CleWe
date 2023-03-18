@@ -17,22 +17,16 @@ export default function Profile() {
             styles.grid22
           )}
         >
-          <div className={styles.achievementBox}>
-            <div className={styles.achievementBoxInfoWrap}>
-              <Image
-                className={styles.achievementBoxImage}
-                src={completedq}
-                alt="quest-completedq-l"
-              />
-
-              <div className={styles.achievementBoxInfo}>
-                <p className={styles.achievementBoxTitle}>Skill improved!</p>
-              </div>
-            </div>
-
-            <button className={styles.achievementBoxButton} type="button">
-              Take the NFT prize
-            </button>
+          {user.trophies
+            .filter((trophy) => !trophy.tx_hash)
+            .map((trophy) => (
+              <UncollectedTrophy
+                key={trophy.id}
+                id={trophy.id}
+                image={`${process.env.NEXT_PUBLIC_APP_URL}/${trophy.img_url}`}
+                description={trophy.description}
+                user={user}
+              />}
           </div>
         </div>
 

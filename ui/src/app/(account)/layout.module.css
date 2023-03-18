@@ -55,6 +55,11 @@
   padding: 112px 0 100px;
 }
 
+.fullWidth {
+  max-width: 100%;
+  padding: 112px 0 0;
+}
+
 .grid {
   display: grid;
   grid-template-columns: 100%;
