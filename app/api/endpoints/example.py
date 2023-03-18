@@ -7,6 +7,8 @@ from faker import Faker
 
 from app.api import deps
 from app import models
+from app.db.base_class import Base
+from app.db.session import engine
 
 
 router = APIRouter()
@@ -81,11 +83,7 @@ def fill_db(db: Session = Depends(deps.get_db)):
 
 @router.delete('/clear-db', status_code=http_status.HTTP_204_NO_CONTENT)
 def clear_db(db: Session = Depends(deps.get_db)):
-    db.query(models.UsersQuests).delete()
-    db.query(models.UserTable).delete()
-    db.query(models.Quest).delete()
-    db.query(models.Trophy).delete()
-    db.query(models.Skill).delete()
-    db.commit()
+    Base.metadata.drop_all(bind=engine)
+    Base.metadata.create_all(bind=engine)
     print("All tables cleared")
     return Msg(msg='All tables have been cleared!')
