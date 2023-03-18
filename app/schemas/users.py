@@ -12,6 +12,7 @@ class User(DBBaseModel):
     wallet_address: str
     level: int
     level_total_exp: int
+    exp_to_next_level: int
     skills: list[Optional[Skill]]
     trophies: list[Trophy]
     completed_quests: list[Optional[Quest]]
