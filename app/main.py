@@ -1,4 +1,7 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from starlette.responses import JSONResponse
+
+from app.api.exceptions import CRUDError
 from app.core.config import settings
 from app.api.api import api_router
 from starlette.middleware.cors import CORSMiddleware
@@ -24,6 +27,8 @@ app.include_router(api_router, prefix=settings.API_PATH)
 
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+# pylint: disable=unused-argument
+@app.exception_handler(CRUDError)
+async def not_found_exception_handler(request: Request, exc: CRUDError) -> JSONResponse:
+    return JSONResponse(status_code=exc.status_code, content={"detail": exc.message})
+
