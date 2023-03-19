@@ -8,6 +8,8 @@ import Link from "next/link";
 import { QuestDTO, UserDTO } from "../model";
 import { ProgressLine } from "../../ProgressLine";
 
+export const revalidate = 0;
+
 type Quest = QuestDTO & {
   completed: boolean;
 };
