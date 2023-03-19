@@ -31,24 +31,24 @@ services:
       - "8000:8000"
     networks:
       - my_network
-  frontend:
-    image: ${FRONTEND_VERSION}
-    container_name: frontend
-    restart: always
-    build:
-      context: ./
-      dockerfile: frontend.dockerfile
+  # frontend:
+  #   image: ${FRONTEND_VERSION}
+  #   container_name: frontend
+  #   restart: always
+  #   build:
+  #     context: ./
+  #     dockerfile: frontend.dockerfile
 
-    env_file:
-      - .env
-    healthcheck:
-      test: curl -f http://localhost:3000/ping/
-    ports:
-      - '3000:3000'
-    environment:
-      NODE_OPTIONS: '--max-old-space-size=1024'
-    networks:
-      - my_network
+  #   env_file:
+  #     - .env
+  #   healthcheck:
+  #     test: curl -f http://localhost:3000/ping/
+  #   ports:
+  #     - '3000:3000'
+  #   environment:
+  #     NODE_OPTIONS: '--max-old-space-size=1024'
+  #   networks:
+  #     - my_network
 
 
 volumes:

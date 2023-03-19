@@ -15,7 +15,7 @@ router = APIRouter()
 
 fake = Faker()
 
-QUEST_NAMES = ['Crypto Wallet', 'Dex', 'DAO']
+QUEST_NAMES = ['Blockchain', 'Dex', 'Crypto Wallet']
 
 class Msg(BaseModel):
     msg: str

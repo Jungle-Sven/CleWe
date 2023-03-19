@@ -18,6 +18,10 @@
     "next": "13.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "4.9.5"
+    "typescript": "4.9.5",
+    "@alch/alchemy-web3": "1.4.7",
+    "@metamask/detect-provider": "2.0.0",
+    "mime": "3.0.0",
+    "nft.storage": "7.0.3"
   }
 }
