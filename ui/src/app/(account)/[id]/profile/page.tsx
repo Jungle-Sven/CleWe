@@ -1,12 +1,33 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import layout from "../../layout.module.css";
-import completedq from "../img/completedq-l.png";
 import avatar from "../img/avatar.jpg";
 import { ProgressLine } from "../../ProgressLine";
 import classNames from "classnames";
+import UncollectedTrophy from "./UncollectedTrophy";
+import CollectedTrophy from "./CollectedTrophy";
+import { UserDTO } from "../model";
 
-export default function Profile() {
+async function getUser(id: string): Promise<UserDTO> {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}`,
+    { cache: "no-store" }
+  );
+  const resJ = await res.json();
+  return resJ;
+}
+
+type Params = {
+  id: string;
+};
+
+export default async function Profile({ params }: { params: Params }) {
+  const user = await getUser(params.id);
+  const currentLevelProgress = Math.floor(
+    ((user.level_total_exp - user.exp_to_next_level) / user.level_total_exp) *
+      100
+  );
+
   return (
     <div className={layout.content}>
       <div className={layout.grid}>
@@ -26,8 +47,8 @@ export default function Profile() {
                 image={`${process.env.NEXT_PUBLIC_APP_URL}/${trophy.img_url}`}
                 description={trophy.description}
                 user={user}
-              />}
-          </div>
+              />
+            ))}
         </div>
 
         <div className={classNames(layout.grid, layout.grid39)}>
@@ -53,7 +74,7 @@ export default function Profile() {
                 />
               </div>
               <div className={styles.profilePersonalitySummaryTitle}>
-                <p>Nickname here</p>
+                <p>{user.nickname}</p>
               </div>
             </div>
           </div>
@@ -72,60 +93,54 @@ export default function Profile() {
               )}
             >
               <div className={styles.levelProgressBadge}>
-                <p className={styles.levelProgressBadgeText}>2</p>
+                <p className={styles.levelProgressBadgeText}>{user.level}</p>
               </div>
               <div className={styles.levelProgressStats}>
                 <div className={styles.progressBarWrap}>
                   <p className={styles.progressBarInfo}>
-                    +38 EXP
+                    +{user.exp_to_next_level} EXP
                     <span className={styles.light}>
                       to reach the next level
                     </span>
                   </p>
                 </div>
                 <div className={styles.expToNextLevel}>
-                  <ProgressLine progress={40} />
+                  <ProgressLine progress={currentLevelProgress} />
                 </div>
               </div>
             </div>
 
             <div className={classNames(layout.grid, layout.grid333)}>
-              <div
-                className={classNames(
-                  layout.contentWidget,
-                  styles.reputationStats,
-                  styles.stats1
-                )}
-              >
-                <p className={styles.reputationStatsNumber}>2.6</p>
-                <p className={styles.reputationStatsTopic}>DEX reputation</p>
-              </div>
-              <div
-                className={classNames(
-                  layout.contentWidget,
-                  styles.reputationStats,
-                  styles.stats2
-                )}
-              >
-                <p className={styles.reputationStatsNumber}>0.1</p>
-                <p className={styles.reputationStatsTopic}>
-                  CryptoWallets reputation
-                </p>
-              </div>
-              <div
-                className={classNames(
-                  layout.contentWidget,
-                  styles.reputationStats,
-                  styles.stats3
-                )}
-              >
-                <p className={styles.reputationStatsNumber}>1.8</p>
-                <p className={styles.reputationStatsTopic}>
-                  L1 systems reputation
-                </p>
-              </div>
+              {user.skills.map((skill) => (
+                <div
+                  key={skill.id}
+                  className={classNames(
+                    layout.contentWidget,
+                    styles.reputationStats,
+                    styles[`stats${Math.ceil(Math.random() * 3)}`]
+                  )}
+                >
+                  <p className={styles.reputationStatsNumber}>
+                    {skill.experience}
+                  </p>
+                  <p className={styles.reputationStatsTopic}>{skill.topic}</p>
+                </div>
+              ))}
             </div>
           </div>
+        </div>
+        {/* Collected Trophies */}
+        <div className={classNames(layout.grid, layout.grid3333)}>
+          {user.trophies
+            .filter((trophy) => trophy.tx_hash)
+            .map((trophy) => (
+              <CollectedTrophy
+                key={trophy.id}
+                imgUrl={`${process.env.NEXT_PUBLIC_APP_URL}/${trophy.img_url}`}
+                description={trophy.description}
+                txnHash={trophy.tx_hash as string}
+              />
+            ))}
         </div>
       </div>
     </div>

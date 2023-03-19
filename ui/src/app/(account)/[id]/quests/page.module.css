@@ -32,7 +32,22 @@
 }
 
 .questItem {
+  height: 100%;
   position: relative;
+}
+
+.questExpSticker {
+  position: absolute;
+  top: 10px;
+  right: -6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 32px;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 200px;
+  background-color: #293249;
+  box-shadow: 3px 5px 20px 0 rgba(0, 0, 0, 0.12);
 }
 
 .questItemCover {
@@ -84,12 +99,34 @@
   line-height: 1.4285714286em;
 }
 
+.questDifficultyWrapper {
+  max-width: 228px;
+  margin-top: 48px;
+}
+
+.questDifficultyTitle {
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 24px;
+}
+
 .questActions {
   display: flex;
   align-items: center;
   margin-top: 22px;
   padding: 14px 0;
   border-top: 1px solid #2f3749;
+  justify-content: center;
+}
+
+.questItemCompletedStatus {
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-top: 16px;
+  text-transform: uppercase;
 }
 
 .questLink {
