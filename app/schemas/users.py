@@ -14,5 +14,5 @@ class User(DBBaseModel):
     level_total_exp: int
     exp_to_next_level: int
     skills: list[Optional[Skill]]
-    trophies: list[Trophy]
+    trophies: list[Optional[Trophy]]
     completed_quests: list[Optional[Quest]]
