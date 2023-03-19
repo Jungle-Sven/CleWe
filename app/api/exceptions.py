@@ -21,4 +21,3 @@ class QuestAlreadyCompleted(CRUDError):
 class TrophyHasHash(CRUDError):
     def __init__(self, message: str = "This trophy already has hash"):
         super().__init__(status_code=status.HTTP_400_BAD_REQUEST, message=message)
-

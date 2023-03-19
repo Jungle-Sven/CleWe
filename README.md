@@ -1,6 +1,6 @@
 # CleWe
 
-## Technology stack
+## Backend technology stack
 
 * FastAPI
 * Postgres 10+

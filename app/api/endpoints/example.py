@@ -30,7 +30,9 @@ def test() -> Msg:
 
 @router.post('/fill-db', status_code=http_status.HTTP_200_OK)
 def fill_db(db: Session = Depends(deps.get_db)):
-
+    """
+    Fill the database with fake data
+    """
     try:
         users = [
             models.UserTable(
@@ -53,8 +55,7 @@ def fill_db(db: Session = Depends(deps.get_db)):
             ) for i in range(len(users))
         ]
 
-        db.bulk_save_objects(objects=users)
-        db.bulk_save_objects(objects=quests)
+        db.bulk_save_objects(objects=[*users, *quests])
 
         users = db.query(models.UserTable).all()
         quests = db.query(models.Quest).all()
@@ -82,8 +83,8 @@ def fill_db(db: Session = Depends(deps.get_db)):
 
 
 @router.delete('/clear-db', status_code=http_status.HTTP_204_NO_CONTENT)
-def clear_db(db: Session = Depends(deps.get_db)):
+def clear_db():
     Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)
-    print("All tables cleared")
+    print("All tables are cleared")
     return Msg(msg='All tables have been cleared!')

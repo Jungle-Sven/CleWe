@@ -28,4 +28,3 @@ def set_trophy_hash(id: int, request_body: trophies.TrophyRequest, db: Session =
     db.add(trophy)
     db.commit()
     return trophy
-

@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING
 
-from sqlalchemy import Column, Integer, ForeignKey, VARCHAR, Text, DECIMAL
+from sqlalchemy import Column, Integer, ForeignKey, VARCHAR, DECIMAL
 from sqlalchemy.orm import Mapped, relationship
 
 from app.db.base_class import Base

@@ -1,4 +1,4 @@
-from typing import AsyncGenerator, Generator
+from typing import Generator
 
 from sqlalchemy.orm import Session
 

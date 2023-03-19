@@ -1,6 +1,6 @@
 from typing import Optional
 
-from app.schemas.base import DBBaseModel, BaseModel
+from app.schemas.base import DBBaseModel
 from app.schemas.skills import Skill
 from app.schemas.trophies import Trophy
 from app.schemas.quests import Quest

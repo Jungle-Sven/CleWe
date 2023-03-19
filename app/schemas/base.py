@@ -9,11 +9,3 @@ class BaseModel(PydanticBaseModel):
 class DBBaseModel(BaseModel):
     class Config:
         orm_mode = True
-
-
-class BaseRead(BaseModel):
-    id: int
-
-
-class BaseDelete(BaseModel):
-    id: int
