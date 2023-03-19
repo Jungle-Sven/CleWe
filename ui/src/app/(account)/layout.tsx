@@ -26,15 +26,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <nav className={styles.navigation}>
           <ul className={styles.mainMenu}>
             <li>
-              <Link
-                className={styles.mainMenuLink}
-                href="/id_placeholder/profile"
-              >
+              <Link className={styles.mainMenuLink} href="/51/profile">
                 Profile
               </Link>
             </li>
             <li>
-              <Link className={styles.mainMenuLink} href="/quests">
+              <Link className={styles.mainMenuLink} href="/51/quests">
                 Quests
               </Link>
             </li>

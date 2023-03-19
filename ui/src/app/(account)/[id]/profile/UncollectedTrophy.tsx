@@ -33,6 +33,7 @@ export default function UncollectedTrophy({
       imgURL: image,
       nickname: user.nickname,
       level: user.level,
+      skills: user.skills,
     });
     console.log("Transcation completed!", txnHash);
 
