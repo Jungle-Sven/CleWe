@@ -26,12 +26,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <nav className={styles.navigation}>
           <ul className={styles.mainMenu}>
             <li>
-              <Link className={styles.mainMenuLink} href="/60/profile">
+              <Link className={styles.mainMenuLink} href="/1/profile">
                 Profile
               </Link>
             </li>
             <li>
-              <Link className={styles.mainMenuLink} href="/60/quests">
+              <Link className={styles.mainMenuLink} href="/1/quests">
                 Quests
               </Link>
             </li>
