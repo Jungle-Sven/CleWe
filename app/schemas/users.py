@@ -1,6 +1,6 @@
 from typing import Optional
 
-from app.schemas.base import DBBaseModel, BaseModel
+from app.schemas.base import DBBaseModel
 from app.schemas.skills import Skill
 from app.schemas.trophies import Trophy
 from app.schemas.quests import Quest
@@ -14,5 +14,5 @@ class User(DBBaseModel):
     level_total_exp: int
     exp_to_next_level: int
     skills: list[Optional[Skill]]
-    trophies: list[Trophy]
+    trophies: list[Optional[Trophy]]
     completed_quests: list[Optional[Quest]]

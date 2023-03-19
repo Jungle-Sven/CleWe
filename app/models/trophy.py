@@ -21,4 +21,3 @@ class Trophy(Base):
         'UserTable',
         back_populates='trophies',
     )
-
