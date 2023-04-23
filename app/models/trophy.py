@@ -12,7 +12,9 @@ if TYPE_CHECKING:
 
 class Trophy(Base):
     id: int = Column(Integer, primary_key=True, index=True)
-    user_id: int = Column(Integer, ForeignKey('usertable.id', ondelete='CASCADE'), index=True)
+    user_id: int = Column(
+        Integer, ForeignKey('usertable.id', ondelete='CASCADE'), index=True
+    )
     img_url: str = Column(VARCHAR(255))
     tx_hash: Optional[str] = Column(VARCHAR(255), unique=True)
     description: str = Column(Text)

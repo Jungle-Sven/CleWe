@@ -14,7 +14,9 @@ router = APIRouter()
 IMAGE_NAMES = ['completedq-l.png', 'gempost-b.png']
 
 
-@router.get('/', response_model=list[quests.Quest], status_code=http_status.HTTP_200_OK)
+@router.get(
+    '/', response_model=list[quests.Quest], status_code=http_status.HTTP_200_OK
+)
 def get_all_quests(db: Session = Depends(deps.get_db)):
     return db.query(Quest).all()
 
@@ -22,15 +24,19 @@ def get_all_quests(db: Session = Depends(deps.get_db)):
 @router.patch(
     '/{slug}/complete/',
     response_model=quests.CompletedResponse,
-    status_code=http_status.HTTP_200_OK
+    status_code=http_status.HTTP_200_OK,
 )
-def complete_quest(slug: str, request_body: quests.QuestRequest, db: Session = Depends(deps.get_db)):
-    quest = (
-        db.query(Quest)
-        .filter(Quest.slug == slug)
+def complete_quest(
+    slug: str,
+    request_body: quests.QuestRequest,
+    db: Session = Depends(deps.get_db),
+):
+    quest = db.query(Quest).filter(Quest.slug == slug).first()
+    user = (
+        db.query(UserTable)
+        .filter(UserTable.id == request_body.user_id)
         .first()
     )
-    user = db.query(UserTable).filter(UserTable.id == request_body.user_id).first()
     if not (quest and user):
         raise NotFound()
 
@@ -41,7 +47,7 @@ def complete_quest(slug: str, request_body: quests.QuestRequest, db: Session = D
     trophy = Trophy(
         user_id=user.id,
         img_url=IMAGE_NAMES[random.randint(0, 1)],
-        description='I love blockchain'
+        description='I love blockchain',
     )
     db.add(user)
     db.add(trophy)

@@ -17,7 +17,9 @@ app = FastAPI(
 if settings.BACKEND_CORS_ORIGINS:
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=[str(origin) for origin in settings.BACKEND_CORS_ORIGINS],
+        allow_origins=[
+            str(origin) for origin in settings.BACKEND_CORS_ORIGINS
+        ],
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
@@ -26,9 +28,11 @@ if settings.BACKEND_CORS_ORIGINS:
 app.include_router(api_router, prefix=settings.API_PATH)
 
 
-
 # pylint: disable=unused-argument
 @app.exception_handler(CRUDError)
-async def not_found_exception_handler(request: Request, exc: CRUDError) -> JSONResponse:
-    return JSONResponse(status_code=exc.status_code, content={"detail": exc.message})
-
+async def not_found_exception_handler(
+    request: Request, exc: CRUDError
+) -> JSONResponse:
+    return JSONResponse(
+        status_code=exc.status_code, content={"detail": exc.message}
+    )

@@ -1,5 +1,6 @@
-from . import base
-from . import users
-from . import skills
-from . import trophies
-from . import quests
+from . import base  # noqa
+from . import users  # noqa
+from . import skills  # noqa
+from . import trophies  # noqa
+from . import quests  # noqa
+from . import auth_schema  # noqa
