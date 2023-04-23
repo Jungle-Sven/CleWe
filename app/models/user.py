@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING
 
-from sqlalchemy import Column, Integer, VARCHAR
+from sqlalchemy import Column, Integer, VARCHAR, Text
 from sqlalchemy.orm import relationship, Mapped
 
 from app.db.base_class import Base
@@ -16,6 +16,8 @@ class UserTable(Base):
     level: int = Column(Integer, default=0)
     level_total_exp: int = Column(Integer)
     exp_to_next_level: int = Column(Integer)
+    email: str = Column(VARCHAR(128), unique=True, index=True)
+    password: str = Column(Text)
     completed_quests: Mapped[list['Quest']] = relationship(
         secondary="usersquests", back_populates='users'
     )
