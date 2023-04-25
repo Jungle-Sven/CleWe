@@ -1,41 +1,35 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-venv
-.idea
-__pycache__
-.env
-
 # dependencies
-/ui/node_modules
-/ui/.pnp
-.pnp.js
+ui/node_modules
+ui/.pnp
+ui/.pnp.js
 
 # testing
 /coverage
 
 # next.js
-/ui/.next/
-/ui/out/
+ui/.next/
+ui/out/
 
 # production
-/ui/build
+ui/build
 
 # misc
 .DS_Store
 *.pem
 
 # debug
-/ui/npm-debug.log*
-/ui/yarn-debug.log*
-/ui/yarn-error.log*
-/ui/.pnpm-debug.log*
+ui/npm-debug.log*
+ui/yarn-debug.log*
+ui/yarn-error.log*
 
 # local env files
-/ui/.env*.local
+ui/.env*.local
 
 # vercel
-/ui.vercel
+ui/.vercel
 
 # typescript
-/ui/*.tsbuildinfo
-/ui/next-env.d.ts
+ui/*.tsbuildinfo
+ui/next-env.d.ts
